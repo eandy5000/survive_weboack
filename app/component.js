@@ -1,5 +1,6 @@
-export default (text = "Hello") => {
-    const element = document.createElement('div');
-    element.innerText = text;
-    return element;
+export default (text="Hi world ") => {
+    const component = document.createElement("div")
+    component.innerText = text;
+
+    return component;
 }
