@@ -31,6 +31,38 @@ in webpack config added entry and output, also added our plugin.
 
 running webpack from .bin creates an app.js that includes our component in the bundle and our plugin makes creates an index.html that has our app.js in it.
 Added build script to package.json 
-` npm run build ` 
+` npm run build `
+___
+Step 4
+
+### Adding automatic browser refresh
+
+One solution is to add --watch flag to webpack
+
+` webpack --watch `
+
+on top of watch we can also add Webpack Dev server and Hot Module Replacement
+
+Webpack Dev Server (WDS) - automaticlly refreshes trivial code changes in the browser
+
+Hot Module Replacement (HMR) - alows you to maintain state while refreshing
+
+to install WDS 
+` npm i --save-dev webpack-dev-server `
+
+you can run it 
+
+` node node_modules/.bin/webpack-dev-server `
+
+now you can make code changes that are automatically refreshed
+
+we can now add scripts to run webpack in dev or production mode
+
+  "scripts": {
+    "start": "webpack-dev-server --env development",
+    "build": "webpack --env production"
+  }
+
+
 
 
