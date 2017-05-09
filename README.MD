@@ -120,6 +120,7 @@ Some basic configuration of our dev config's options
         ___
         Step 6
 
+NOTE: for now I have disabled eslint but I've kept the rc and ignore file
         install eslint
         ` npm i --save-dev eslint `
 
@@ -154,6 +155,28 @@ module.exports = {
 };
 
         ```
+css loading
+
+added css-loader and style loader to the common config 
+
+```
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    }
+```
+ then added main.css file and imported it in index.js
+ css-loader- looks for css imports
+ style loader- takes these styles and loads them into a style tag in the html
+
+ Loaders are transformations that are applied to source files, and return the new source and can be chained together like a pipe in Unix. They are piped above in an array from right to left
+
+ 
+
 
 
 

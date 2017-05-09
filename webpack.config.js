@@ -18,7 +18,15 @@ commonConfig = {
         new HtmlWebpackPlugin({
             title: 'Webpack demo'
         })
-    ]
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    }
 }
 
 module.exports = (env) => {
