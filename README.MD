@@ -223,7 +223,48 @@ plugins : [
 
     the bundle will now include a seperate css file linked in index.html
 
-    
+    ___
+    Adding images to build
+
+    url-loader adds images from our app directory to our build as base 64 inline images
+         
+```javascript   
+            {
+                test: /\.(jpg|png|svg)$/,
+                loader: 'url-loader'
+            } 
+```
+
+This will add any image you import to your build but sometimes its better to limit the size of the image file to keep the build from getting too large.
+
+```javascript
+            {
+                test: /\.(jpg|png|svg)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 25000
+                }
+            }
+```
+now that we have a limit we can use file-loader to add image files to our bundle that are over the limit, 
+NOTE: I can't quite get the url-loader to run on files under limit and then run file loader on images over limit, so in this version i'm just running file-loader
+
+```javascript
+            // {
+            //     test: /\.(jpg|png|svg)$/,
+            //     loader: 'url-loader',
+            //     options: {
+            //         limit: 25000
+            //     }
+            // },
+            {
+                test: /\.(jpg|png|svg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[hash].[ext]'
+                }
+            }
+```
 
 
 
