@@ -113,10 +113,51 @@ Some basic configuration of our dev config's options
                 // Defaults to 8080 },
             }
         }
-        ```
+```
+
+        with this configuration we can get status and errors at
+        ` http://localhost:8080/webpack-dev-server/ `
         ___
         Step 6
-        
+
+        install eslint
+        ` npm i --save-dev eslint `
+
+        then add lint to package.json scripts
+        ` "lint:js": "eslint app/webpack.*.js --cache" `
+
+        This script will lint every js file so you don't have to include the package in every js file. As your project grows you may want to add a .eslintignore file
+
+        also add .eslintrc.js with this configuration
+
+        ```
+module.exports = {
+    env: {
+        browser: true,
+        commonjs: true,
+        es6: true,
+        node: true,
+    },
+    extends: 'eslint:recommended',
+    parserOptions: {
+        sourceType: 'module',
+    },
+    rules: {
+        'comma-dangle': [' error', 'always-multiline'],
+        indent: [' error', 2],
+        'linebreak-style': [' error', 'unix'],
+        quotes: [' error', 'single'],
+        semi: [' error', 'always'],
+        'no-unused-vars': [' warn'],
+        'no-console': 0,
+    },
+};
+
+        ```
+
+
+
+
 
 
 
