@@ -71,7 +71,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ((text="Hi world!!! ") => {
+/* harmony default export */ __webpack_exports__["a"] = ((text="Hi world! ") => {
     const component = document.createElement("div")
     component.innerText = text;
 
