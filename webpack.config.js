@@ -38,13 +38,6 @@ commonConfig = {
                    fallback: 'style-loader'
                 })
             },
-            // {
-            //     test: /\.(jpg|png|svg)$/,
-            //     loader: 'url-loader',
-            //     options: {
-            //         limit: 25000
-            //     }
-            // },
             {
                 test: /\.(jpg|png|svg)$/,
                 loader: 'file-loader',
