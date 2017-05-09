@@ -174,8 +174,58 @@ added css-loader and style loader to the common config
  style loader- takes these styles and loads them into a style tag in the html
 
  Loaders are transformations that are applied to source files, and return the new source and can be chained together like a pipe in Unix. They are piped above in an array from right to left
+___
+To Create a seperate Style sheet in the build. in webpack.config
 
- 
+```javascript
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const etPlugin = new ExtractTextPlugin({filename: '[name].css'})
+```
+its also handy to have include and exclude variables to include in the rules
+
+```javascript
+const exclude = (path) => {
+    return path.match(/node_modules/)
+}
+
+const PATHS = {
+    app: path.join(__dirname, 'app'),
+    build: path.join(__dirname, 'build')
+}
+
+const include = PATHS.app
+```
+
+now we can make a rule with our plugin and include our plugin in plugins
+
+```javascript
+plugins : [
+        new HtmlWebpackPlugin({
+            title: 'Webpack demo'
+        }),
+        etPlugin
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                include,
+                exclude,
+                use: etPlugin.extract({
+                   use:  ['css-loader'],
+                   fallback: 'style-loader'
+                })
+            }
+        ]
+    }
+
+```
+
+    the bundle will now include a seperate css file linked in index.html
+
+    
+
+
 
 
 
