@@ -16,7 +16,7 @@ ___
 
 Step 2
 
-add app/config.js and include it as module into index.js
+add app/component.js and include it as module into index.js
 
 also added webpack.config.js
 
