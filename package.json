@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint:js": "eslint app/webpack.*.js --cache",
-    "start": "webpack-dev-server --env development",
-    "build": "webpack --env production"
+
   },
   "author": "",
   "license": "ISC",
