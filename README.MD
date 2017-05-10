@@ -269,7 +269,11 @@ NOTE: I can't quite get the url-loader to run on files under limit and then run 
                 }
             }
 ```
+___
 
+Added multi-file webpack configuration and webpack-merge package
+
+added webpack.parts.js
 
 
 
