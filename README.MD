@@ -62,6 +62,10 @@ we can now add scripts to run webpack in dev or production mode
     "start": "webpack-dev-server --env development",
     "build": "webpack --env production"
   }
+
+Added nodemon to start script to watch webpack.config.js and reload the dev server on change
+
+` "start": "nodemon --watch webpack.config.js --exec 'webpack-dev-server --env development' " `
   ___
 
   Step 5

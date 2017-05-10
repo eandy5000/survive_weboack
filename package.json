@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start": "nodemon --watch webpack.config.js --exec 'webpack-dev-server --env development' ",
+    "build": "webpack --env production"
   },
   "author": "",
   "license": "ISC",
