@@ -275,6 +275,27 @@ Added multi-file webpack configuration and webpack-merge package
 
 added webpack.parts.js
 
+webpack-merge takes an array of objects and merges them into a single object. This allow you to use seperate configurations based on variables like env and also pull configuration into seperate files to keep the webpack config from getting too verbose
+
+```javascript
+
+const merge = require('webpack-merge')
+const parts = require('./webpack.parts')
+
+const config = merge([commonConfig, devServerConfig])
+
+/* devServerConfig is a function that takes an object with port and host as a parameter returns the devServer configuration object */ 
+const devServerConfig = merge([
+    parts.devServer({
+        host: process.env.HOST,
+        port: process.env.PORT
+    })
+])
+
+```
+
+
+
 
 
 
