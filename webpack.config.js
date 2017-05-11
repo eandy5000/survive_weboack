@@ -2,6 +2,7 @@ const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
 const parts = require('./webpack.parts')
 const merge = require('webpack-merge')
+const plugin = require('./webpack.plugins')
 
 const PATHS = {
     app: path.join(__dirname, 'app'),
@@ -19,9 +20,7 @@ const commonConfig = merge([
             filename: '[name].js'
         },
         plugins: [
-            new HTMLPlugin({
-                title: "My Build"
-            })
+           plugin.HTML
         ]
     }
 ])
