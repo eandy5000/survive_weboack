@@ -1,13 +1,16 @@
 const path = require('path')
-const HTMLPlugin = require('html-webpack-plugin')
 const parts = require('./webpack.parts')
 const merge = require('webpack-merge')
-const plugin = require('./webpack.plugins')
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const PATHS = {
     app: path.join(__dirname, 'app'),
     build: path.join(__dirname, 'build')
 }
+
+const include = PATHS.app
+const exclude = path.join(__dirname, 'node_modules')
 
 // webpack configuration shared by production and dev
 const commonConfig = merge([
@@ -20,9 +23,14 @@ const commonConfig = merge([
             filename: '[name].js'
         },
         plugins: [
-           plugin.HTML
+           parts.HTML,
         ]
-    }
+    },
+    //module with loaders
+    merge([
+        parts.cssLoader({include, exclude}),
+        parts.babelLoader({include, exclude})
+        ])
 ])
 
 /* function from parts that passes host and port

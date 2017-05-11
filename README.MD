@@ -294,7 +294,130 @@ const devServerConfig = merge([
 
 ```
 
+____
 
+added include and exclude to webpack.config to pass as parameters to functions making config objects from parts
+
+```javascript
+const include = PATHS.app
+const exclude = path.join(__dirname, 'node_modules')
+```
+
+added cssLoader function to parts
+
+``` javascript
+exports.cssLoader = ({include, exclude} = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                include,
+                exclude,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    }
+})
+```
+then merged the loader into commonConfig
+
+```javascript
+const commonConfig = merge([
+    {
+        entry: {
+            app: PATHS.app
+        },
+        output: {
+            path: PATHS.build,
+            filename: '[name].js'
+        },
+        plugins: [
+           plugin.HTML
+        ]
+    },
+    parts.cssLoader({include, exclude})
+])
+```
+___
+Adding Babel
+
+install dependencies
+
+npm i -D babel-loader babel-core babel-preset-env
+
+created .babelrc note: use json notation e.g. double quotes
+
+```javascript
+{
+    "presets": ["babel-preset-env"]
+}
+```
+
+then in parts
+```javascript
+    exports.babelLoader = {
+        module: {
+            rules: [
+                {
+                    use: 'babel-loader',
+                    test: /\.js$/,
+                }
+            ]
+        }
+    }
+```
+
+now to merge our module object in config
+```javascript
+const commonConfig = merge([
+    {
+        entry: {
+            app: PATHS.app
+        },
+        output: {
+            path: PATHS.build,
+            filename: '[name].js'
+        },
+        plugins: [
+           parts.HTML,
+        ]
+    },
+    //module with loaders
+    merge([
+        parts.cssLoader({include, exclude}),
+        parts.babelLoader
+        ])
+])
+
+```
+
+Now its running babel on all js files, so we need to refactor parts as a function that can take include and exclude
+```javascript
+exports.babelLoader = ({include, exclude} = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: 'babel-loader',
+                include,
+                exclude
+            }
+        ]
+    }
+})
+```
+then we can include our refactor in config
+```javascript
+    merge([
+        parts.cssLoader({include, exclude}),
+        parts.babelLoader({include, exclude})
+        ])
+```
+
+
+```javascript
+
+```
 
 
 
