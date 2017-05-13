@@ -45,23 +45,33 @@ exports.cssLoader = ({include, exclude} = {}) => ({
     plugins: [cssExtractor]
 })
 
-// exports.babelLoader = {
-//     module: {
-//         rules: [
-//             {
-//                 use: 'babel-loader',
-//                 test: /\.js$/,
-//             }
-//         ]
-//     }
-// }
-
 exports.babelLoader = ({include, exclude} = {}) => ({
     module: {
         rules: [
             {
                 test: /\.js$/,
                 use: 'babel-loader',
+                include,
+                exclude
+            }
+        ]
+    }
+})
+
+exports.imageLoader = ({include, exclude} = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.(jp?g|png|svg|gif)$/,
+                use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 40000
+                            }
+                        },
+                        'image-webpack-loader'
+                    ],
                 include,
                 exclude
             }

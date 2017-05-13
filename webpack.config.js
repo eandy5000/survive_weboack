@@ -2,8 +2,6 @@ const path = require('path')
 const parts = require('./webpack.parts')
 const merge = require('webpack-merge')
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
 const PATHS = {
     app: path.join(__dirname, 'app'),
     build: path.join(__dirname, 'build')
@@ -29,7 +27,8 @@ const commonConfig = merge([
     //module with loaders
     merge([
         parts.cssLoader({include, exclude}),
-        parts.babelLoader({include, exclude})
+        parts.babelLoader({include, exclude}),
+        parts.imageLoader({include, exclude})
         ])
 ])
 
