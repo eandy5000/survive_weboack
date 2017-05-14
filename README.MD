@@ -414,7 +414,7 @@ then we can include our refactor in config
         ])
 ```
 
-added Image loader
+added Image loader with url loader for images under 40k
 
 ```javascript
 exports.imageLoader = () => ({
