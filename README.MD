@@ -414,6 +414,28 @@ then we can include our refactor in config
         ])
 ```
 
+added Image loader
+
+```javascript
+exports.imageLoader = () => ({
+    module: {
+        rules: [
+            {
+                test: /\.(jpe?g|png|svg|gif)$/,
+                use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 40000
+                            }
+                        },
+                        'image-webpack-loader'
+                    ]
+            }
+        ]
+    }
+})
+```
 
 ```javascript
 

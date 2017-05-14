@@ -58,11 +58,11 @@ exports.babelLoader = ({include, exclude} = {}) => ({
     }
 })
 
-exports.imageLoader = ({include, exclude} = {}) => ({
+exports.imageLoader = () => ({
     module: {
         rules: [
             {
-                test: /\.(jp?g|png|svg|gif)$/,
+                test: /\.(jpe?g|png|svg|gif)$/,
                 use: [
                         {
                             loader: 'url-loader',
@@ -71,9 +71,7 @@ exports.imageLoader = ({include, exclude} = {}) => ({
                             }
                         },
                         'image-webpack-loader'
-                    ],
-                include,
-                exclude
+                    ]
             }
         ]
     }

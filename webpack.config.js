@@ -28,7 +28,7 @@ const commonConfig = merge([
     merge([
         parts.cssLoader({include, exclude}),
         parts.babelLoader({include, exclude}),
-        parts.imageLoader({include, exclude})
+        parts.imageLoader()
         ])
 ])
 
